@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Homework</title>
 </head>
+
 <body>
-<!--
+  <!--
 Обязательное задание.
 
 Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
@@ -17,10 +19,55 @@
 метод должен уменьшать стоимость продукта на 25%.
 Необходимо продемонстрировать работу с объектом (в свободной форме).
 -->
-<script>
-  "use strict";
+  <script>
+    "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
-</script>
+    function ProductES5(productName, price) {
+      this.productName = productName;
+      this.price = price;
+    }
+
+    ProductES5.prototype.make25Discount = function () {
+      let newPrice = this.price - this.price * 0.25;
+      return newPrice;
+    }
+
+    ProductES5.prototype.productInfo = function () {
+      console.log(`Название товара: ${this.productName}, изначальная цена: `
+        + `${this.price}, цена с учетом скидки: ${this.make25Discount()}`);
+    }
+
+    let firstTradeUnitES5 = new ProductES5('Чайник', 3500);
+    let secondTradeUnitES5 = new ProductES5('Телевизор', 60300);
+
+    firstTradeUnitES5.productInfo();
+    secondTradeUnitES5.productInfo();
+
+    //////////////////////////////////////////////////////////////////////
+
+    class ProductES6 {
+      constructor(productName, price) {
+        this.productName = productName;
+        this.price = price;
+      }
+
+      make25Discount() {
+        let newPrice = this.price - this.price * 0.25;
+        return newPrice;
+      }
+
+      productInfo() {
+        console.log(`Название товара: ${this.productName}, изначальная цена: `
+          + `${this.price}, цена с учетом скидки: ${this.make25Discount()}`);
+      }
+    }
+
+    let firstTradeUnitES6 = new ProductES6('Пылесос', 15493);
+    let secondTradeUnitES6 = new ProductES6('Соковыжималка', 5839);
+
+    firstTradeUnitES6.productInfo();
+    secondTradeUnitES6.productInfo();
+  </script>
 </body>
+
 </html>

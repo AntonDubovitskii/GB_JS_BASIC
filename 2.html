@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Homework</title>
 </head>
+
 <body>
-<!--
+  <!--
 Необязательное задание, но желательно сделать.
 
 Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
@@ -47,10 +49,112 @@
 что-нибудь пропустить.
 4. Если непонятно условие - задайте вопрос.
 -->
-<script>
-  "use strict";
+  <script>
+    "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
-</script>
+    function PostES5(authorName, text) {
+      this.authorName = authorName;
+      this.text = text;
+      this.postDateTime = new Date();
+    }
+
+    PostES5.prototype.editPost = function (editedText) {
+      this.text = editedText;
+      this.postDateTime = new Date();
+    }
+
+    function AttachedPostES5(authorName, text) {
+      PostES5.call(this, authorName, text);
+      this.highlighted = false;
+    }
+
+    AttachedPostES5.prototype = Object.create(PostES5.prototype);
+    AttachedPostES5.prototype.constructor = AttachedPostES5;
+
+    AttachedPostES5.prototype.makeTextHighlighted = function () {
+      this.highlighted = true;
+      this.postDateTime = new Date();
+    }
+
+    const postCommonES5 = new PostES5('Егор', 'Хорошая сегодня погода');
+    const postImportantES5 = new AttachedPostES5('Иван', 'Куплю дом срочно');
+
+    // Выводим имя автора, техт и дату в консоль
+    console.log(`${postCommonES5.authorName} - ${postCommonES5.text}`
+      + ` ${postCommonES5.postDateTime}`);
+
+    // Редактируем текст
+    postCommonES5.editPost('Погода испортилась');
+
+    // Выводим имя автора, отредактированный текст и дату в консоль
+    console.log(`${postCommonES5.authorName} - ${postCommonES5.text}`
+      + ` ${postCommonES5.postDateTime}`);
+
+    console.log(`${postImportantES5.authorName} - ` + `${postImportantES5.text} `
+      + `${postCommonES5.postDateTime}`
+      + `(Подсвечено: ${postImportantES5.highlighted})`);
+
+    // Меняем статус поста на подсвеченный
+    postImportantES5.makeTextHighlighted();
+
+    console.log(`${postImportantES5.authorName} - ` + `${postImportantES5.text} `
+      + `${postCommonES5.postDateTime}`
+      + `(Подсвечено: ${postImportantES5.highlighted})`);
+
+    console.log('------------------------------------------------------------');
+
+    ///////////////////////////////////////////////////////////////////////////
+    class PostES6 {
+      constructor(authorName, text) {
+        this.authorName = authorName;
+        this.text = text;
+        this.postDateTime = new Date();
+      }
+
+      editPost(editedText) {
+        this.text = editedText;
+        this.postDateTime = new Date();
+      }
+    }
+
+    class AttachedPostES6 extends PostES6 {
+      constructor(authorName, text) {
+        super(authorName, text);
+        this.postDateTime = new Date();
+        this.highlighted = false;
+      }
+
+      makeTextHighlighted() {
+        this.highlighted = true;
+        this.postDateTime = new Date();
+      }
+    }
+
+    const postCommonES6 = new PostES6('Артур', 'Всем привет!');
+    const postImportantES6 = new AttachedPostES6('Семён', 'Продам гараж!')
+
+    // Выводим имя автора, техт и дату в консоль
+    console.log(`${postCommonES6.authorName} - ${postCommonES6.text} `
+      + `${postCommonES6.postDateTime}`);
+
+    // Редактируем текст
+    postCommonES6.editPost('Добрый день!');
+
+    // Выводим имя автора, отредактированный текст и дату в консоль
+    console.log(`${postCommonES6.authorName} - ${postCommonES6.text} `
+      + `${postCommonES6.postDateTime}`);
+
+    console.log(`${postImportantES6.authorName} - ` + `${postImportantES6.text} `
+      + `${postCommonES6.postDateTime}`
+      + `Подсвечено: ${postImportantES6.highlighted}`);
+
+    // Меняем статус поста на подсвеченный
+    postImportantES6.makeTextHighlighted();
+
+    console.log(`${postImportantES6.authorName} - ` + `${postImportantES6.text} `
+      + `${postCommonES6.postDateTime}`
+      + `Подсвечено: ${postImportantES6.highlighted}`);
+  </script>
 </body>
+
 </html>
