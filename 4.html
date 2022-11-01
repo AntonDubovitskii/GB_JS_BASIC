@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+
+<body>
+  <!--
+Обязательное задание.
+
+Необходимо реализовать четыре функции, каждая функция должна принимать по два
+числа и выполнять одну из операций (каждая функция выполняет одну из них):
+1. Сложение
+2. Разность
+3. Умножение
+4. Деление
+
+Необходимо сделать так, чтобы функция вернула число, например выражение
+`console.log(sum(2, 6));` должно вывести число 8 в консоль (sum - функция
+сложения в данном примере, ваши названия функций могут отличаться).
+
+Округлять значения, которые возвращают функции не нужно, однако, обратите
+внимание на разность, функция должна вычесть из большего числа меньшее, либо
+вернуть 0, если числа равны.
+
+Функциям всегда передаются корректные числа, проверки на NaN, Infinity делать
+не нужно.
+
+Необходимо для всех функций прописать комментарии jsdoc https://jsdoc.app/.
+-->
+  <script>
+    "use strict";
+
+    /**
+    * Функция производит сложение двух чисел
+    * @param {number} firstNumber Первое слагаемое
+    * @param {number} secondNumber Второе слагаемое
+    * @returns {number} Возвращается сумма чисел
+    */
+    function summation(firstNumber, secondNumber) {
+      return firstNumber + secondNumber
+    }
+
+    /**
+    * Функция производит умножение двух чисел
+    * @param {number} firstNumber Первый множитель
+    * @param {number} secondNumber Второй множитель
+    * @returns {number} Возвращается произведение чисел
+    */
+    function multiplication(firstNumber, secondNumber) {
+      return firstNumber * secondNumber
+    }
+
+    /**
+    * Функция производит деление первого введенного числа на второе
+    * @param {number} firstNumber Делимое
+    * @param {number} secondNumber Делитель
+    * @returns {number} Возвращается частное переданных чисел
+    */
+    function division(firstNumber, secondNumber) {
+      return firstNumber / secondNumber
+    }
+
+    /**
+    * Функция производит вычитание меньшего введенного числа из большего
+    * @param {number} firstNumber Первое число
+    * @param {number} secondNumber Второе число
+    * @returns {number} Возвращается разность переданных чисел
+    */
+    function subtraction(firstNumber, secondNumber) {
+      return firstNumber > secondNumber ? firstNumber - secondNumber
+        : secondNumber - firstNumber;
+    }
+
+    console.log(summation(12, 6));        // 18
+    console.log(multiplication(2, 8));    // 16
+    console.log(division(121, 11));       // 11
+    console.log(subtraction(100, 5));     // 95
+    console.log(subtraction(8, 20));      // 12
+    console.log(subtraction(8, 8));       // 0
+  </script>
+</body>
+
+</html>
